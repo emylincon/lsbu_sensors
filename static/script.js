@@ -1,0 +1,1 @@
+var yes = document.getElementsByClassName()
