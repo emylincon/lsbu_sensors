@@ -10,6 +10,14 @@
     <canvas id="myChart" width="400" height="400"></canvas>
 </div>
 
+<div class='data' >
+            {% if data %}
+            <h1>Data</h1>
+            <p>temp = {{data['temperature']}}</p>
+            <p>pressure = {{ data['pressure'] }}</p>
+            {% endif %}
+</div>
+
 <script>
 var ctx = document.getElementById('myChart').getContext('2d');
 var myChart = new Chart(ctx, {

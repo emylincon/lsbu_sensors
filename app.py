@@ -7,7 +7,7 @@ data = {'temperature': [], 'pressure': []}
 
 @app.route('/')
 def hello_world():
-    return render_template('index.html')
+    return render_template('index.html', data=data)
 
 
 def add_data(temperature, pressure):
@@ -28,5 +28,5 @@ def send_data():
         return jsonify({'info': 'Value Error! floats only!'})
 
 
-if __name__ == '__main__':
-    app.run()
+# if __name__ == '__main__':
+#     app.run()
