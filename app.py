@@ -22,7 +22,7 @@ def add_data(temperature, pressure):
 @app.route('/send')
 def send_data():
     try:
-        add_data(temperature=float(request.args.get('temperature')), pressure=float(request.args.get('temperature')))
+        add_data(temperature=float(request.args.get('temperature')), pressure=float(request.args.get('pressure')))
         return jsonify({'info': 'data received'}), 200
     except ValueError:
         return jsonify({'info': 'Value Error! floats only!'})
