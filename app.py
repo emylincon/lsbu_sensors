@@ -1,32 +1,129 @@
-from flask import Flask, jsonify, request, render_template
+from flask import Flask, jsonify, request, render_template, send_from_directory, abort
+from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy import Column, Integer, String, Float
+import os
+import time
+from datetime import datetime as dt
+import csv
 
 app = Flask(__name__)
 
-data = {'temperature': [], 'pressure': []}
+
+basedir = os.path.abspath(os.path.dirname(__file__))
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(basedir, 'data.db')
+db = SQLAlchemy(app)
+
+
+# database models
+class Sensors(db.Model):
+    __tablename__ = 'sensors'
+    id = Column(Integer, primary_key=True)
+    datetime = Column(String)
+    temperature = Column(Float)
+    humidity = Column(Float)
+
+
+@app.cli.command('db_create')
+def db_create():
+    db.create_all()
+    print('database created!')
+
+
+@app.cli.command('db_drop')
+def db_drop():
+    db.drop_all()
+    print('database dropped!')
+
+
+@app.cli.command('db_seed')
+def db_seed():
+    first = Sensors(datetime="{:%d-%m-%Y %H:%M:%S}".format(dt.now()),
+                    temperature=20.26,
+                    humidity=14.11)
+    time.sleep(1)
+    second = Sensors(datetime="{:%d-%m-%Y %H:%M:%S}".format(dt.now()),
+                     temperature=21.42,
+                     humidity=15.11)
+    time.sleep(1)
+    third = Sensors(datetime="{:%d-%m-%Y %H:%M:%S}".format(dt.now()),
+                    temperature=22.33,
+                    humidity=13.41)
+
+    db.session.add(first)
+    db.session.add(second)
+    db.session.add(third)
+    db.session.commit()
+    print('database seeded!')
+
+
+@app.cli.command('db_save')
+def save_data():
+    folder = "static/csv_data"
+    files = os.listdir(folder)
+    if len(files) > 7:
+        files.sort()
+        os.remove(f"{folder}/{files[0]}")
+    path_name = f'{folder}/{"{:%d %b %Y}".format(dt.now())}.csv'
+    with open(path_name, 'w', newline='\n') as f:
+        out = csv.writer(f)
+        out.writerow(['id', 'datetime', 'temperature', 'humidity'])
+
+        for item in db.session.query(Sensors).all():
+            row = [item.id, item.datetime, item.temperature, item.humidity]
+            out.writerow(row)
+
+
+@app.cli.command('db_test')
+def delete_rows():
+    obj = db.session.query(Sensors).order_by(Sensors.id.desc()).first()
+    all = Sensors.query.limit(obj.id-1).all()
+    for row in all:
+        db.session.delete(row)
+    db.session.commit()
+    print('rows deleted!')
 
 
 @app.route('/')
 def hello_world():
-    return render_template('index.html', data=data)
+    files = os.listdir('static/csv_data')
+    return render_template('index.html', data=files)
 
 
-def add_data(temperature, pressure):
-    max_length = 200
-    if len(data['pressure']) > max_length:
-        data['pressure'].pop(0)
-        data['temperature'].pop(0)
-    data['temperature'].append(temperature)
-    data['pressure'].append(pressure)
+def add_data(temperature, humidity):
+    time_now = dt.now()
+
+    if (time_now.hour == 23) and (time_now.minute == 59) and (time_now.second >= 57):
+        save_data()
+        delete_rows()
+    new_data = Sensors(datetime="{:%d-%m-%Y %H:%M:%S}".format(dt.now()),
+                       temperature=temperature,
+                       humidity=humidity)
+
+    db.session.add(new_data)
+    db.session.commit()
 
 
 @app.route('/send')
 def send_data():
     try:
-        add_data(temperature=float(request.args.get('temperature')), pressure=float(request.args.get('pressure')))
+        add_data(temperature=float(request.args.get('temperature')), humidity=float(request.args.get('pressure')))
         return jsonify({'info': 'data received'}), 200
     except ValueError:
         return jsonify({'info': 'Value Error! floats only!'})
 
 
+@app.route("/download", methods=["POST", "GET"])
+def get_csv():
+
+    try:
+        return send_from_directory('static/csv_data', filename=request.form["myfile"], as_attachment=True)
+    except FileNotFoundError:
+        abort(404)
+
+
+@app.route("/get-data")
+def get_data():
+    obj = db.session.query(Sensors).order_by(Sensors.id.desc()).first()
+    return jsonify({'datetime': obj.datetime, 'temperature': obj.temperature, 'humidity': obj.humidity}), 200
 # if __name__ == '__main__':
 #     app.run()
