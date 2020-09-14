@@ -66,7 +66,7 @@ var myChart1 = new Chart(ct1, {
 });
 
 const max_length = 50;
-const start = new Date("Sep 13, 2020 12:00:00").getTime();
+const start = new Date("Sep 10, 2020 12:00:00").getTime();
 
 function today(){
     let date = new Date();
