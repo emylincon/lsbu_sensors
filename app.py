@@ -5,6 +5,7 @@ import os
 import time
 from datetime import datetime as dt
 import csv
+import pytz
 
 app = Flask(__name__)
 
@@ -56,14 +57,15 @@ def db_seed():
     print('database seeded!')
 
 
-@app.cli.command('db_save')
+#@app.cli.command('db_save')
 def save_data():
+    london = pytz.timezone('Europe/London')
     folder = "static/csv_data"
     files = os.listdir(folder)
     if len(files) > 7:
         files.sort()
         os.remove(f"{folder}/{files[0]}")
-    path_name = f'{folder}/{"{:%d %b %Y}".format(dt.now())}.csv'
+    path_name = f'{folder}/{"{:%d %b %Y}".format(dt.now().astimezone(london))}.csv'
     with open(path_name, 'w', newline='\n') as f:
         out = csv.writer(f)
         out.writerow(['id', 'datetime', 'temperature', 'humidity'])
@@ -73,7 +75,7 @@ def save_data():
             out.writerow(row)
 
 
-@app.cli.command('db_test')
+#@app.cli.command('db_test')
 def delete_rows():
     obj = db.session.query(Sensors).order_by(Sensors.id.desc()).first()
     all = Sensors.query.limit(obj.id-1).all()
@@ -90,12 +92,17 @@ def hello_world():
 
 
 def add_data(temperature, humidity):
-    time_now = dt.now()
+    london = pytz.timezone('Europe/London')
+    time_now = dt.now().astimezone(london)
+    raw_save_time = '23:59:57'
+    save_time = [int(i) for i in raw_save_time.split(':')]
+    if (time_now.hour == save_time[0]) and (time_now.minute == save_time[1]) and (time_now.second >= save_time[2]):
+        if f'{"{:%d %b %Y}".format(dt.now().astimezone(london))}.csv' not in os.listdir('static/csv_data'):
+            print('\n\nsaving data\n\n ')
+            save_data()
+            delete_rows()
 
-    if (time_now.hour == 23) and (time_now.minute == 59) and (time_now.second >= 57):
-        save_data()
-        delete_rows()
-    new_data = Sensors(datetime="{:%d-%m-%Y %H:%M:%S}".format(dt.now()),
+    new_data = Sensors(datetime="{:%d-%m-%Y %H:%M:%S}".format(dt.now().astimezone(london)),
                        temperature=temperature,
                        humidity=humidity)
 
@@ -114,7 +121,6 @@ def send_data():
 
 @app.route("/download", methods=["POST", "GET"])
 def get_csv():
-
     try:
         return send_from_directory('static/csv_data', filename=request.form["myfile"], as_attachment=True)
     except FileNotFoundError:
