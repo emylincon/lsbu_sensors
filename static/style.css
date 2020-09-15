@@ -58,7 +58,8 @@ label{
     height: 170px;
     float: left;
     border-radius: 50%;
-    line-height: 170px;
+    margin-top: 50px;
+    line-height: 30px;
     text-align: center;
     text-shadow: 2px 2px 4px #000000;
     color: white;

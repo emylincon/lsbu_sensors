@@ -99,8 +99,8 @@ function timeCount(){
     var minutes = Math.floor((myCount  % (1000 * 60 * 60)) / (1000 * 60));
     var seconds = Math.floor((myCount  % (1000 * 60)) / 1000);
 
-    document.getElementById("time").innerHTML = days + "d " + hours + "h "
-  + minutes + "m " + seconds + "s ";
+    document.getElementById("time").innerHTML = "<span style='color:pink;'>RUNTIME</span><br><span>" + days + "d " + hours + "h "
+  + minutes + "m " + seconds + "s </span>";
 }
 
 
