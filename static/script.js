@@ -70,7 +70,7 @@ const start = new Date("Sep 10, 2020 12:00:00").getTime();
 
 function today(){
     let date = new Date();
-    document.getElementById("today").innerHTML = `${date.getDate()}-${date.getMonth()+1}-${date.getFullYear()}`;
+    document.getElementById("today").innerHTML = `${String(date).split(String(date.getFullYear()))[0].trim()}, ${date.getFullYear()}`;
 }
 
 today()

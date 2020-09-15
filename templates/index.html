@@ -11,45 +11,54 @@
 
 </head>
 <body>
-
-    <div id="nav">
-        <div class="welcome">
+    <div class="myHead">
+        <div class="myTitle">
             LSBU Sensors (FW218)
         </div>
-
+    </div>
+    <div class="middle">
         <div id='time'></div>
-        <div id='today'></div>
-    </div>
+        <div class="download">
+            <div id='today'></div>
+            <div class="myForm">
+                <form action="/download" method="POST">
+                    <label for="myfiles">Choose a CSV to Download</label>
+                    <select name="myfile" id="myfile">
+                      <option value="volvo">Sep 11</option>
+                      <option value="saab">Sep 12</option>
+                      <option value="opel">Sep 13</option>
+                      <option value="audi">Sep 14</option>
+                    </select>
+                    <input type="submit" value="Download">
+                </form>
+            </div>
 
+        </div>
+    </div>
     <br>
-    <div class="download">
-        <form action="/download" name="myForm" id="myForm" method="POST">
-            <label for="myfile">Choose a file:</label>
-            <select name="myfile" id="myfile">
-                {% for file in data %}
-                <option value="{{ file }}">{{ file }}</option>
-                {% endfor %}
-            </select>
-            <input type="submit" value="Download">
-        </form>
-    </div>
+    <div class="main">
 
-    <div class="chart-container" style="position: relative; height:10%; width:50%; margin-left: 25%;">
-        <canvas id="myChart"></canvas>
+        <div class="chart-container">
+            <canvas id="myChart1"></canvas>
+        </div>
+        <div class="chart-container" >
+            <canvas id="myChart"></canvas>
+        </div>
+
+        &nbsp;
+        &nbsp;
+
     </div>
-    <div class="chart-container" style="position: relative; height:30%; width:50%; margin-left: 25%;">
-        <canvas id="myChart1"></canvas>
-    </div>
-    &nbsp;
-    &nbsp;
+    <br>
     <div class="footer">
         Designed by Emeka Ugwuanyi
-        <a href="https://github.com/emylincon"><i class="fa fa-github"></i></a>
+        <p>
+            <a href="https://github.com/emylincon"><i class="fa fa-github"></i></a>
                   &nbsp;
         <a href="https://www.linkedin.com/in/emeka-ugwuanyi-259089121/"><i class="fa fa-linkedin"></i></a>
+        </p>
+
     </div>
-
-
 </body>
 <script src="{{ url_for('static', filename='script.js') }}"></script>
 </html>
