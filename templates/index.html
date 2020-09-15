@@ -21,13 +21,12 @@
         <div class="download">
             <div id='today'></div>
             <div class="myForm">
-                <form action="/download" method="POST">
-                    <label for="myfiles">Choose a CSV to Download</label>
+                <form action="/download" name="myForm" id="myForm" method="POST">
+                    <label for="myfile">Choose a CSV to Download</label>
                     <select name="myfile" id="myfile">
-                      <option value="volvo">Sep 11</option>
-                      <option value="saab">Sep 12</option>
-                      <option value="opel">Sep 13</option>
-                      <option value="audi">Sep 14</option>
+                        {% for file in data %}
+                        <option value="{{ file }}">{{ file }}</option>
+                        {% endfor %}
                     </select>
                     <input type="submit" value="Download">
                 </form>
