@@ -96,7 +96,7 @@ label{
 .footer{
     width: 50%;
     margin-left: 25%;
-    background-color: rgba(15, 77, 192, 0.685);
+    /*background-color: rgba(15, 77, 192, 0.685);*/
     color: white;
     text-align: center;
     justify-items: center;
@@ -157,8 +157,8 @@ body{
 }
 
 #face{
-    width: 3%;
-    position: absolute;
+    width: 10%;
+    border-radius: 50%;
 }
 
 
@@ -199,7 +199,7 @@ body{
     }
 
     #face{
-        width: 5%;
+        width: 15%;
     }
 }
 
@@ -227,6 +227,6 @@ body{
         height: 800px;
     }
     #face{
-        width: 7%;
+        width: 20%;
     }
 }
