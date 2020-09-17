@@ -104,7 +104,7 @@ def hello_world():
 def add_data(temperature, humidity):
     london = pytz.timezone('Europe/London')
     time_now = dt.now().astimezone(london)
-    raw_save_time = '15:59:57'
+    raw_save_time = '23:59:55'
     save_time = [int(i) for i in raw_save_time.split(':')]
     if (time_now.hour == save_time[0]) and (time_now.minute == save_time[1]) and (time_now.second >= save_time[2]):
         if f'{"{:%d %b %Y}".format(dt.now().astimezone(london))}.csv' not in os.listdir('static/csv_data'):
