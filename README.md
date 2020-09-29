@@ -13,3 +13,7 @@
 ## Endpoint to get csv data
 * This returns a csv
 * `/sensor-data/csv/<int:length>`
+
+## Endpoint to return statistics of data collected
+* This returns a json data
+* `/describe` 
