@@ -316,8 +316,5 @@ def sensor_data_csv(length=50):
                    l_data[i].temperature, l_data[i].humidity, l_data[i].heat_index,
                    a_data[i].temperature, a_data[i].humidity, a_data[i].heat_index]
             out.writerow(row)
-        # for item in db.session.query(Sensors).all()[-length:]:
-        #     row = [item.id, item.datetime, item.temperature, item.humidity]
-        #     out.writerow(row)
 
     return send_from_directory(folder, filename=file_name, as_attachment=True)
