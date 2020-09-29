@@ -1,18 +1,42 @@
-
+Chart.defaults.global.defaultFontColor = 'white';
 var ctx = document.getElementById('myChart').getContext('2d');
 var myChart = new Chart(ctx, {
     type: 'line',
     data: {
         labels: [0],
         datasets: [{
-            label: 'Celsius',
+            label: 'REAL',
             data: [1],
-            backgroundColor: 'rgba(255, 99, 132, 0.2)',
-            borderColor: 'rgba(255, 99, 132, 1)',
-            borderWidth: 1
-        }]
+            backgroundColor: 'rgba(255,99,71,1)',
+            borderColor: 'rgba(255,99,71,1)',
+            borderWidth: 1,
+            fill: false,
+            },
+
+            {label: 'PREDICTED (ARIMA)',
+            data: [1],
+            backgroundColor: 'rgba(247, 220, 111, 1)',
+            borderColor: 'rgba(247, 220, 111, 1)',
+            fill: false,
+            borderWidth: 1},
+
+            {label: 'PREDICTED (LSTM)',
+            data: [1],
+            backgroundColor: 'rgba(255,20,147, 1)',
+            borderColor: 'rgba(255,20,147, 1)',
+            fill: false,
+            borderWidth: 1}
+
+        ]
     },
     options: {
+         legend: {
+            display: true,
+            labels: {
+                // This more specific font property overrides the global property
+                fontColor: 'white'
+            }
+         },
         scales: {
             yAxes: [{
                 ticks: {
@@ -20,14 +44,16 @@ var myChart = new Chart(ctx, {
                     callback: function(value, index, values) {
                         return value+'°';
                     }
-                }
+                },
+                type: 'logarithmic'
             }]
         },
         title: {
             fontSize: 20,
             text: "Room Temperature Graph",
             display: true,
-            fontStyle: 'bold'
+            fontStyle: 'bold',
+            fontColor: 'white'
         },
     }
 });
@@ -37,13 +63,28 @@ var myChart1 = new Chart(ct1, {
     type: 'line',
     data: {
         labels: [0],
-        datasets: [{
-            label: 'Percentage',
+        datasets: [
+            {label: 'REAL',
             data: [1],
-            backgroundColor: 'rgba(54, 162, 235, 0.2)',
-            borderColor: 'rgba(54, 162, 235, 1)',
-            borderWidth: 1
-        }]
+            backgroundColor: 'rgba(40, 116, 166, 1)',
+            borderColor: 'rgba(40, 116, 166, 1)',
+            fill: false,
+            borderWidth: 1},
+
+            {label: 'PREDICTED (ARIMA)',
+            data: [1],
+            backgroundColor: 'rgba(247, 220, 111, 1)',
+            borderColor: 'rgba(247, 220, 111, 1)',
+            fill: false,
+            borderWidth: 1},
+
+            {label: 'PREDICTED (LSTM)',
+            data: [1],
+            backgroundColor: 'rgba(255,20,147, 1)',
+            borderColor: 'rgba(255,20,147, 1)',
+            fill: false,
+            borderWidth: 1}
+        ]
     },
     options: {
         scales: {
@@ -60,11 +101,192 @@ var myChart1 = new Chart(ct1, {
             fontSize: 20,
             text: "Room Humidity Graph",
             display: true,
-            fontStyle: 'bold'
+            fontStyle: 'bold',
+            fontColor: 'white'
         },
     }
 });
 
+var ct2 = document.getElementById('myChart2').getContext('2d');
+var myChart2 = new Chart(ct2, {
+    type: 'line',
+    data: {
+        labels: [0],
+        datasets: [{
+            label: 'REAL',
+            data: [1],
+            backgroundColor: 'rgba(35, 155, 86, 1)',
+            borderColor: 'rgba(35, 155, 86, 1)',
+            fill: false,
+            borderWidth: 1
+            },
+
+            {label: 'PREDICTED (ARIMA)',
+            data: [1],
+            backgroundColor: 'rgba(247, 220, 111,  1)',
+            borderColor: 'rgba(247, 220, 111,  1)',
+            fill: false,
+            borderWidth: 1},
+
+            {label: 'PREDICTED (LSTM)',
+            data: [1],
+            backgroundColor: 'rgba(255,20,147, 1)',
+            borderColor: 'rgba(255,20,147, 1)',
+            fill: false,
+            borderWidth: 1}
+
+        ]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true,
+                    callback: function(value, index, values) {
+                        return value+'°';
+                    }
+                }
+            }]
+        },
+        title: {
+            fontSize: 20,
+            text: "Feels Like",
+            display: true,
+            fontStyle: 'bold',
+            fontColor: 'white'
+        },
+    }
+});
+
+dataPie = {
+    datasets: [{
+        data: [90, 10],
+        backgroundColor: [
+            'rgba(0, 255, 0, 0.8)',
+            'rgba(255, 0, 0, 0.8)',
+        ],
+        borderColor: [
+            'rgba(255, 255, 255, 1)',
+            'rgba(255, 255, 255, 1)',
+        ],
+    }],
+
+    // These labels appear in the legend and in the tooltips when hovering different arcs
+    labels: [
+        'Accuracy',
+        'Loss',
+    ]
+};
+var pie1 = document.getElementById('Pie-hum').getContext('2d');
+var PieHum = new Chart(pie1, {
+    type: 'doughnut',
+    data: dataPie,
+    options: {
+        legend: {
+            display: false,
+
+         },
+        title: {
+            fontSize: 20,
+            text: "Model Accuracy",
+            display: true,
+            fontStyle: 'bold',
+            fontColor: 'white'
+        },
+    }
+});
+
+var pie2 = document.getElementById('Pie-temp').getContext('2d');
+var PieTemp = new Chart(pie2, {
+    type: 'doughnut',
+    data: dataPie,
+    options: {
+        legend: {
+            display: false
+         },
+        title: {
+            fontSize: 20,
+            text: "Model Accuracy",
+            display: true,
+            fontStyle: 'bold',
+            fontColor: 'white'
+        },
+    }
+});
+
+var pie3 = document.getElementById('Pie-heat').getContext('2d');
+var PieHeat = new Chart(pie3, {
+    type: 'doughnut',
+    data: dataPie,
+    options: {
+        legend: {
+            display: false
+         },
+        title: {
+            fontSize: 20,
+            text: "Model Accuracy",
+            display: true,
+            fontStyle: 'bold',
+            fontColor: 'white'
+        },
+    }
+});
+
+const allCharts = [myChart, myChart1, myChart2, PieTemp, PieHum, PieHeat]
+
+function get_elem(myId){
+	return document.querySelector(myId);
+}
+
+var stats = {'data_stat': {'temperature': {'count': {'data': get_elem('#temp-count-data'), 'arrow': get_elem('#temp-count-arrow')},
+							'mean': {'data': get_elem('#temp-mean-data'), 'arrow': get_elem('#temp-mean-arrow')},
+							'std': {'data': get_elem('#temp-std-data'), 'arrow': get_elem('#temp-std-arrow')},
+							'min': {'data': get_elem('#temp-min-data'), 'arrow': get_elem('#temp-min-arrow')},
+							'max': {'data': get_elem('#temp-mean-data'), 'arrow': get_elem('#temp-mean-arrow')}
+							},
+						'humidity': {'count': {'data': get_elem('#hum-count-data'), 'arrow': get_elem('#hum-count-arrow')},
+							'mean': {'data': get_elem('#hum-mean-data'), 'arrow': get_elem('#hum-mean-arrow')},
+							'std': {'data': get_elem('#hum-std-data'), 'arrow': get_elem('#hum-std-arrow')},
+							'min': {'data': get_elem('#hum-min-data'), 'arrow': get_elem('#hum-min-arrow')},
+							'max': {'data': get_elem('#hum-mean-data'), 'arrow': get_elem('#hum-mean-arrow')}
+							},
+						'heat_index': {'count': {'data': get_elem('#heat-count-data'), 'arrow': get_elem('#heat-count-arrow')},
+							'mean': {'data': get_elem('#heat-mean-data'), 'arrow': get_elem('#heat-mean-arrow')},
+							'std': {'data': get_elem('#heat-std-data'), 'arrow': get_elem('#heat-std-arrow')},
+							'min': {'data': get_elem('#heat-min-data'), 'arrow': get_elem('#heat-min-arrow')},
+							'max': {'data': get_elem('#heat-mean-data'), 'arrow': get_elem('#heat-mean-arrow')}, }
+							},
+		'pred_stat': {'lstm': {'hum': {'rmse': get_elem('#hum-lstm-rmse'), 'date': get_elem('#hum-lstm-date')},
+						'temp': {'rmse': get_elem('#temp-lstm-rmse'), 'date': get_elem('#temp-lstm-date')},
+						'heat': {'rmse': get_elem('#heat-lstm-rmse'), 'date': get_elem('#heat-lstm-date')},
+						},
+					'arima': {'hum': {'rmse': get_elem('#hum-arima-rmse'), 'date': get_elem('#hum-arima-date')},
+						'temp': {'rmse': get_elem('#temp-arima-rmse'), 'date': get_elem('#temp-arima-date')},
+						'heat': {'rmse': get_elem('#heat-arima-rmse'), 'date': get_elem('#heat-arima-date')},
+						}
+					}
+			}
+
+function displayDataStats(data_stats){
+    Object.keys(stats['data_stat']).forEach(key => {
+        // console.log(key, stats['data_stat'][key]);
+        Object.keys(stats['data_stat'][key]).forEach(stat_key => {
+            stats['data_stat'][key][stat_key].data.innerHTML = data_stats[key][stat_key].data;
+            stats['data_stat'][key][stat_key].arrow.innerHTML = `<img style="height: 15px;" src='/static/${data_stats[key][stat_key].arrow}.png'> ${data_stats[key][stat_key]['%']}%`;
+        });
+
+    });
+}
+
+function displayPredStats(pred_stats){
+    Object.keys(stats['pred_stat']).forEach(key => {
+        Object.keys(stats['pred_stat'][key]).forEach(stat_key => {
+            stats['pred_stat'][key][stat_key].rmse.innerHTML = `<img style="height: 15px;" src='/static/${pred_stats[key][stat_key].arrow}.png'> ${pred_stats[key][stat_key]['rmse']}`;
+            stats['pred_stat'][key][stat_key].date.innerHTML = pred_stats[key][stat_key].date;
+        });
+    });
+
+}
 const max_length = 50;
 const start = new Date("Sep 10, 2020 12:00:00").getTime();
 window.mobileCheck = function() {
@@ -93,9 +315,12 @@ function next_x(chat, item){
 }
 
 function next_y(chat, item){
-    chat.data.datasets[0].data.push(item);
-    if (chat.data.datasets[0].data.length > max_length){
-        chat.data.datasets[0].data.shift();
+    for (let i=0; i<3;i++ ){
+        chat.data.datasets[i].data.push(item[i]);
+    if (chat.data.datasets[i].data.length > max_length){
+        chat.data.datasets[i].data.shift();
+    }
+
     }
 
 }
@@ -117,20 +342,34 @@ async function myData(){
     const response = await fetch('/get-data');
     const data = await response.json();
     let myTime = data['datetime'].split(" ")[1];
-    next_x(myChart, myTime);        // temperature
-    next_x(myChart1, myTime);       // humidity
-    next_y(myChart, data['temperature']);    // temperature
-    next_y(myChart1, data['humidity']);      // temperature
-    // console.log(data['datetime']);
-    // console.log(data['temperature']);
-    // console.log(data['humidity']);
+    let temp_data = [data['actual']['sensor']['temperature'], data['actual']['arima']['temperature'], data['actual']['lstm']['temperature']];
+    let hum_data = [data['actual']['sensor']['humidity'], data['actual']['arima']['humidity'], data['actual']['lstm']['humidity']];
+    let heat_data = [data['actual']['sensor']['heat_index'], data['actual']['arima']['heat_index'], data['actual']['lstm']['heat_index']];
+    let data_list = [temp_data, hum_data, heat_data];
+    let chart_list = [myChart, myChart1, myChart2];
+
+    let pie_list = [PieTemp, PieHum, PieHeat];
+    let p_data = data['pred_stat']['lstm'];
+    let pie_data = [[p_data['temp']['accuracy'], p_data['temp']['loss']],
+                    [p_data['hum']['accuracy'], p_data['hum']['loss']],
+                    [p_data['heat']['accuracy'], p_data['heat']['loss']]];
+    for(let i=0; i<3;i++){
+        next_x(chart_list[i], myTime);
+        next_y(chart_list[i], data_list[i]);
+        pie_list[i].data.datasets[0].data = pie_data[i];
+    }
+
+    displayDataStats(data['data_stat']);
+    displayPredStats(data['pred_stat']);
+
 
 }
 
 function update(){
     myData();
-    myChart.update();
-    myChart1.update();
+    for(let i=0; i<allCharts.length; i++){
+        allCharts[i].update();
+    }
     timeCount();
 }
 
