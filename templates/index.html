@@ -37,17 +37,226 @@
     <br>
     <div class="main">
 
-        <div class="chart-container">
-            <canvas id="myChart1"></canvas>
-        </div>
-        <div class="chart-container" >
-            <canvas id="myChart"></canvas>
+        <div class="container-group">
+            <div class="chart-container" style='margin-right: .9%;'>
+                <canvas id="myChart" height="140"></canvas>
+            </div>
+            <div class="chart-container">
+                <canvas id="myChart1" height="140"></canvas>
+            </div>
         </div>
 
+        <br>
+        <div class="lone-container">
+            <canvas id="myChart2" height="100"></canvas>
+        </div>
         &nbsp;
         &nbsp;
 
     </div>
+
+
+    <div class="stat">
+        <div class="container">
+            <div class="box">
+                <h2>Humidity</h2>
+                    <h3>data stat</h3>
+
+                    <table class="tg">
+                        <tbody>
+                            <tr>
+                                <td class="tg-0pky">Count</td>
+                                <td class="tg-0lax" id="hum-count-data">33.4</td>
+                                <td class="tg-0la" id="hum-count-arrow"> <img style="height: 15px;" src='/static/up.png'> 17%</td>
+                            </tr>
+                            <tr>
+                                <td class="tg-0pky">Mean</td>
+                                <td class="tg-0lax" id="hum-mean-data">53.4</td>
+                                <td class="tg-0la" id="hum-mean-arrow"> <img style="height: 15px;" src='/static/up.png'> 10%</td>
+                            </tr>
+                            <tr>
+                                <td class="tg-0pky">STD</td>
+                                <td class="tg-0lax" id="hum-std-data">13.4</td>
+                                <td class="tg-0la" id="hum-std-arrow"> <img style="height: 15px;" src='/static/down.png'> 42%</td>
+                            </tr>
+                            <tr>
+                                <td class="tg-0pky">Min</td>
+                                <td class="tg-0lax" id="hum-min-data">73.4</td>
+                                <td class="tg-0la" id="hum-min-arrow"> <img style="height: 15px;" src='/static/down.png'> 12%</td>
+                            </tr>
+                            <tr>
+                                <td class="tg-0pky">Max</td>
+                                <td class="tg-0lax" id="hum-max-data">23.4</td>
+                                <td class="tg-0la" id="hum-max-arrow"> <img style="height: 15px;" src='/static/up.png'> 92%</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <br>
+                    <br>
+                    <h3>Prediction Models</h3>
+                    <br>
+                    <table class="tg">
+                        <thead>
+                          <tr>
+                            <th class="tg-0pky">Model</th>
+                            <th class="tg-0lax">RMSE</th>
+                            <th class="tg-0lax">Last Trained</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="tg-0pky">ARIMA</td>
+                                <td class="tg-0lax" id="hum-arima-rmse"> <img style="height: 15px;" src='/static/down.png'> 20</td>
+                                <td class="tg-0lax" id="hum-arima-date"> Sat Sep 26, 2020</td>
+                            </tr>
+                            <tr>
+                                <td class="tg-0pky">LSTM</td>
+                                <td class="tg-0lax" id="hum-lstm-rmse"><img style="height: 15px;" src='/static/down.png'> 53.4</td>
+                                <td class="tg-0lax" id="hum-lstm-date"> Sat Sep 26, 2020</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <br>
+                    <div class="pie">
+                        <canvas id="Pie-hum"></canvas>
+                    </div>
+            </div>
+
+            <div class="box">
+                <h2>Temperature</h2>
+                    <h3>data stat</h3>
+
+                    <table class="tg">
+                        <tbody>
+                            <tr>
+                                <td class="tg-0pky">Count</td>
+                                <td class="tg-0lax" id="temp-count-data">33.4</td>
+                                <td class="tg-0la" id="temp-count-arrow"> <img style="height: 15px;" src='/static/up.png'> 17%</td>
+                            </tr>
+                            <tr>
+                                <td class="tg-0pky">Mean</td>
+                                <td class="tg-0lax" id="temp-mean-data">53.4</td>
+                                <td class="tg-0la" id="temp-mean-arrow"> <img style="height: 15px;" src='/static/up.png'> 10%</td>
+                            </tr>
+                            <tr>
+                                <td class="tg-0pky">STD</td>
+                                <td class="tg-0lax" id="temp-std-data">13.4</td>
+                                <td class="tg-0la" id="temp-std-arrow"> <img style="height: 15px;" src='/static/down.png'> 42%</td>
+                            </tr>
+                            <tr>
+                                <td class="tg-0pky">Min</td>
+                                <td class="tg-0lax" id="temp-min-data">73.4</td>
+                                <td class="tg-0la" id="temp-min-arrow"> <img style="height: 15px;" src='/static/down.png'> 12%</td>
+                            </tr>
+                            <tr>
+                                <td class="tg-0pky">Max</td>
+                                <td class="tg-0lax" id="temp-max-data">23.4</td>
+                                <td class="tg-0la" id="temp-max-arrow"> <img style="height: 15px;" src='/static/up.png'> 92%</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <br>
+                    <br>
+                    <h3>Prediction Models</h3>
+                    <br>
+                    <table class="tg">
+                        <thead>
+                          <tr>
+                            <th class="tg-0pky">Model</th>
+                            <th class="tg-0lax">RMSE</th>
+                            <th class="tg-0lax">Last Trained</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="tg-0pky">ARIMA</td>
+                                <td class="tg-0lax" id="temp-arima-rmse"> <img style="height: 15px;" src='/static/down.png'> 20</td>
+                                <td class="tg-0lax" id="temp-arima-date"> Sat Sep 26, 2020</td>
+                            </tr>
+                            <tr>
+                                <td class="tg-0pky">LSTM</td>
+                                <td class="tg-0lax" id="temp-lstm-rmse"><img style="height: 15px;" src='/static/down.png'> 53.4</td>
+                                <td class="tg-0lax" id="temp-lstm-date"> Sat Sep 26, 2020</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <br>
+                    <div class="pie">
+                        <canvas id="Pie-temp"></canvas>
+                    </div>
+            </div>
+
+            <div class="box">
+                <h2>Feels Like</h2>
+                    <h3>data stat</h3>
+
+                    <table class="tg">
+                        <tbody>
+                            <tr>
+                                <td class="tg-0pky">Count</td>
+                                <td class="tg-0lax" id="heat-count-data">33.4</td>
+                                <td class="tg-0la" id="heat-count-arrow"> <img style="height: 15px;" src='/static/up.png'> 17%</td>
+                            </tr>
+                            <tr>
+                                <td class="tg-0pky">Mean</td>
+                                <td class="tg-0lax" id="heat-mean-data">53.4</td>
+                                <td class="tg-0la" id="heat-mean-arrow"> <img style="height: 15px;" src='/static/up.png'> 10%</td>
+                            </tr>
+                            <tr>
+                                <td class="tg-0pky">STD</td>
+                                <td class="tg-0lax" id="heat-std-data">13.4</td>
+                                <td class="tg-0la" id="heat-std-arrow"> <img style="height: 15px;" src='/static/down.png'> 42%</td>
+                            </tr>
+                            <tr>
+                                <td class="tg-0pky">Min</td>
+                                <td class="tg-0lax" id="heat-min-data">73.4</td>
+                                <td class="tg-0la" id="heat-min-arrow"> <img style="height: 15px;" src='/static/down.png'> 12%</td>
+                            </tr>
+                            <tr>
+                                <td class="tg-0pky">Max</td>
+                                <td class="tg-0lax" id="heat-max-data">23.4</td>
+                                <td class="tg-0la" id="heat-max-arrow"> <img style="height: 15px;" src='/static/up.png'> 92%</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <br>
+                    <br>
+                    <h3>Prediction Models</h3>
+                    <br>
+                    <table class="tg">
+                        <thead>
+                          <tr>
+                            <th class="tg-0pky">Model</th>
+                            <th class="tg-0lax">RMSE</th>
+                            <th class="tg-0lax">Last Trained</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="tg-0pky">ARIMA</td>
+                                <td class="tg-0lax" id="heat-arima-rmse"> <img style="height: 15px;" src='/static/down.png'> 20</td>
+                                <td class="tg-0lax" id="heat-arima-date"> Sat Sep 26, 2020</td>
+                            </tr>
+                            <tr>
+                                <td class="tg-0pky">LSTM</td>
+                                <td class="tg-0lax" id="heat-lstm-rmse"><img style="height: 15px;" src='/static/down.png'> 53.4</td>
+                                <td class="tg-0lax" id="heat-lstm-date"> Sat Sep 26, 2020</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <br>
+                    <div class="pie">
+                        <canvas id="Pie-heat"></canvas>
+                    </div>
+            </div>
+
+        </div>
+    </div>
+
+
     <br>
     <br>
     <div class="footer">
