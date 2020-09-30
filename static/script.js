@@ -6,7 +6,7 @@ var myChart = new Chart(ctx, {
         labels: [0],
         datasets: [{
             label: 'REAL',
-            data: [1],
+            data: [],
             backgroundColor: 'rgba(255,99,71,1)',
             borderColor: 'rgba(255,99,71,1)',
             borderWidth: 1,
@@ -14,14 +14,14 @@ var myChart = new Chart(ctx, {
             },
 
             {label: 'PREDICTED (ARIMA)',
-            data: [1],
+            data: [],
             backgroundColor: 'rgba(247, 220, 111, 1)',
             borderColor: 'rgba(247, 220, 111, 1)',
             fill: false,
             borderWidth: 1},
 
             {label: 'PREDICTED (LSTM)',
-            data: [1],
+            data: [],
             backgroundColor: 'rgba(255,20,147, 1)',
             borderColor: 'rgba(255,20,147, 1)',
             fill: false,
@@ -65,21 +65,21 @@ var myChart1 = new Chart(ct1, {
         labels: [0],
         datasets: [
             {label: 'REAL',
-            data: [1],
+            data: [],
             backgroundColor: 'rgba(40, 116, 166, 1)',
             borderColor: 'rgba(40, 116, 166, 1)',
             fill: false,
             borderWidth: 1},
 
             {label: 'PREDICTED (ARIMA)',
-            data: [1],
+            data: [],
             backgroundColor: 'rgba(247, 220, 111, 1)',
             borderColor: 'rgba(247, 220, 111, 1)',
             fill: false,
             borderWidth: 1},
 
             {label: 'PREDICTED (LSTM)',
-            data: [1],
+            data: [],
             backgroundColor: 'rgba(255,20,147, 1)',
             borderColor: 'rgba(255,20,147, 1)',
             fill: false,
@@ -94,7 +94,8 @@ var myChart1 = new Chart(ct1, {
                     callback: function(value, index, values) {
                         return value+'%';
                     }
-                }
+                },
+                type: 'logarithmic'
             }]
         },
         title: {
@@ -114,7 +115,7 @@ var myChart2 = new Chart(ct2, {
         labels: [0],
         datasets: [{
             label: 'REAL',
-            data: [1],
+            data: [],
             backgroundColor: 'rgba(35, 155, 86, 1)',
             borderColor: 'rgba(35, 155, 86, 1)',
             fill: false,
@@ -122,14 +123,14 @@ var myChart2 = new Chart(ct2, {
             },
 
             {label: 'PREDICTED (ARIMA)',
-            data: [1],
+            data: [],
             backgroundColor: 'rgba(247, 220, 111,  1)',
             borderColor: 'rgba(247, 220, 111,  1)',
             fill: false,
             borderWidth: 1},
 
             {label: 'PREDICTED (LSTM)',
-            data: [1],
+            data: [],
             backgroundColor: 'rgba(255,20,147, 1)',
             borderColor: 'rgba(255,20,147, 1)',
             fill: false,
@@ -145,7 +146,8 @@ var myChart2 = new Chart(ct2, {
                     callback: function(value, index, values) {
                         return value+'°';
                     }
-                }
+                },
+                type: 'logarithmic'
             }]
         },
         title: {
@@ -287,7 +289,7 @@ function displayPredStats(pred_stats){
     });
 
 }
-const max_length = 50;
+const max_length = 20;
 const start = new Date("Sep 10, 2020 12:00:00").getTime();
 window.mobileCheck = function() {
   let check = false;
