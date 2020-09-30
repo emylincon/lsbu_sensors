@@ -19,7 +19,7 @@ select{
 }
 input{
     width: 100%;
-    background-color: rgba(30, 130, 76, 0.9);
+    background-color: rgba(94, 124, 221, 0.9);
     border-radius: 5px;
     color: white;
     font-size: 20px;
@@ -27,7 +27,7 @@ input{
 }
 
 input:hover{
-    background-color: rgba(30, 130, 76, 0.3);
+    background-color: rgba(142, 162, 228, 0.9);
 }
 
 label{
@@ -96,7 +96,7 @@ label{
 .footer{
     width: 50%;
     margin-left: 25%;
-    /*background-color: rgba(15, 77, 192, 0.685);*/
+    background: rgba(0,0,0,0.5);
     color: white;
     text-align: center;
     justify-items: center;
@@ -104,7 +104,7 @@ label{
     font-size: 20px;
     text-shadow: 2px 2px 4px #000000;
     border-radius: 8px;
-    box-shadow: 10px 10px 5px grey;
+    /*box-shadow: 10px 10px 5px grey;*/
 }
 
 .footer a {
@@ -115,28 +115,36 @@ label{
 body{
     /* background-color: cornflowerblue; */
     /* background-image: url('bg-image.jpg'); */
-    background-image: linear-gradient(cornflowerblue, pink);
+    background-image: url('/static/back3.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    /*background-image: linear-gradient(cornflowerblue, pink);*/
 
 }
 
 
 .myHead{
-    background-image: url('lsbu-title.jpg');
-    border-radius: 5px;
+    /*background-image: url('lsbu-title.jpg');*/
+    border-radius: 20px;
     background-size: cover;
     background-position: center; /* Center the image */
-    width: 40%;
+    width: 50%;
     height: 100px;
     text-align: center;
     font-weight: 900;
-    margin-left: 30%;
+    margin-left: 25%;
 }
 
 .myTitle{
     background: rgba(0,0,0,0.5);
-    color: cornflowerblue;
-    line-height: 100px;
+    color: white;
+    line-height: 40px;
     font-size: 50px;
+    border-radius: 20px;
+}
+
+#sub-title{
+    font-size: 20px;
 }
 
 .main{
@@ -266,9 +274,6 @@ body{
         width: 45%;
     }
 
-    .myTitle{
-        font-size: 30px;
-    }
 }
 
 @media screen and (max-width:1265px){
@@ -287,10 +292,36 @@ body{
     }
 }
 
-@media screen and (max-width:800px){
+@media screen and (max-width:1196px){
+    .container .box h2{
+        font-size: 40px;
+    }
     .myHead{
         width: 70%;
         margin-left: 15%;
+    }
+
+}
+
+@media screen and (max-width:1000px){
+
+    .chart-container{
+        width: 100%;
+    }
+    .container-group{
+        flex-direction: column;
+    }
+    .lone-container{
+        width:100%;
+        margin-left: 0%;
+    }
+
+}
+
+@media screen and (max-width:800px){
+    .myHead{
+        width: 96%;
+        margin-left: 1.5%;
     }
     .main{
         width: 90%;
@@ -330,23 +361,5 @@ body{
     }
 }
 
-@media screen and (max-width:1196px){
-    .container .box h2{
-        font-size: 40px;
-    }
 
-}
 
-@media screen and (max-width:1000px){
-    .chart-container{
-        width: 100%;
-    }
-    .container-group{
-        flex-direction: column;
-    }
-    .lone-container{
-        width:100%;
-        margin-left: 0%;
-    }
-
-}
