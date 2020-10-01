@@ -38,6 +38,12 @@ var myChart = new Chart(ctx, {
             }
          },
         scales: {
+             xAxes: [{
+                gridLines: {
+                    display: true,
+                    color: 'rgb(211,211,211, 0.16)'
+                  }
+            }],
             yAxes: [{
                 ticks: {
                     beginAtZero: true,
@@ -45,7 +51,11 @@ var myChart = new Chart(ctx, {
                         return value+'°';
                     }
                 },
-                type: 'logarithmic'
+                // type: 'logarithmic',
+                gridLines: {
+                    display: true,
+                    color: 'rgb(211,211,211, 0.16)'
+                  }
             }]
         },
         title: {
@@ -88,6 +98,12 @@ var myChart1 = new Chart(ct1, {
     },
     options: {
         scales: {
+            xAxes: [{
+                gridLines: {
+                    display: true,
+                    color: 'rgb(211,211,211, 0.16)'
+                  }
+            }],
             yAxes: [{
                 ticks: {
                     beginAtZero: true,
@@ -95,7 +111,11 @@ var myChart1 = new Chart(ct1, {
                         return value+'%';
                     }
                 },
-                type: 'logarithmic'
+                // type: 'logarithmic',
+                gridLines: {
+                    display: true,
+                    color: 'rgb(211,211,211, 0.16)'
+                  }
             }]
         },
         title: {
@@ -140,6 +160,12 @@ var myChart2 = new Chart(ct2, {
     },
     options: {
         scales: {
+            xAxes: [{
+                gridLines: {
+                    display: true,
+                    color: 'rgb(211,211,211, 0.16)'
+                  }
+            }],
             yAxes: [{
                 ticks: {
                     beginAtZero: true,
@@ -147,7 +173,11 @@ var myChart2 = new Chart(ct2, {
                         return value+'°';
                     }
                 },
-                type: 'logarithmic'
+                // type: 'logarithmic',
+                gridLines: {
+                    display: true,
+                    color: 'rgb(211,211,211, 0.16)'
+                  }
             }]
         },
         title: {
@@ -289,7 +319,7 @@ function displayPredStats(pred_stats){
     });
 
 }
-const max_length = 20;
+const max_length = 50;
 const start = new Date("Sep 10, 2020 12:00:00").getTime();
 window.mobileCheck = function() {
   let check = false;
