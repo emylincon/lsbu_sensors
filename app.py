@@ -38,15 +38,15 @@ display_data = {'actual': {'sensor': {'heat_index': 24.94215049377219, 'temperat
                                              'min': {'data': 20.55, 'arrow': 'equal', '%': 0.0},
                                              'max': {'data': 26.27, 'arrow': 'equal', '%': 0.0}}},
                 'pred_stat': {'lstm': {
-                    'hum': {'rmse': 1.34, 'date': '24-09-2020 19:09:36', 'accuracy': 59.82, 'arrow': 'down',
-                            'loss': 40.18},
-                    'temp': {'rmse': 0.01, 'date': '24-09-2020 19:09:36', 'accuracy': 99.1, 'arrow': 'down',
-                             'loss': 0.9},
-                    'heat': {'rmse': 0.03, 'date': '24-09-2020 19:09:36', 'accuracy': 71.53, 'arrow': 'down',
-                             'loss': 28.47}},
-                              'arima': {'hum': {'rmse': 1.11, 'date': '24-09-2020 19:09:36', 'arrow': 'up'},
-                                        'temp': {'rmse': 0.0, 'date': '24-09-2020 19:09:36', 'arrow': 'down'},
-                                        'heat': {'rmse': 0.02, 'date': '24-09-2020 19:09:36', 'arrow': 'up'}}}}
+                    'hum': {'rmse': 2.35, 'date': '21-10-2020 16:58:53', 'accuracy': 82.62, 'arrow': 'up',
+                            'loss': 17.38},
+                    'temp': {'rmse': 0.88, 'date': '21-10-2020 16:54:57', 'accuracy': 79.43, 'arrow': 'up',
+                             'loss': 20.57},
+                    'heat': {'rmse': 0.35, 'date': '21-10-2020 16:56:46', 'accuracy': 87.84, 'arrow': 'up',
+                             'loss': 12.16}},
+                    'arima': {'hum': {'rmse': 1.11, 'date': '24-09-2020 19:09:36', 'arrow': 'up'},
+                              'temp': {'rmse': 0.90, 'date': '24-09-2020 19:09:36', 'arrow': 'down'},
+                              'heat': {'rmse': 1.24, 'date': '24-09-2020 19:09:36', 'arrow': 'up'}}}}
 
 
 # database models
