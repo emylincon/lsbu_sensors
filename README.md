@@ -1,5 +1,5 @@
 # Web App for Displaying Sensor data
-* Available on here >>> [link](http://lsbu-sensors.herokuapp.com/)
+* Web app is Available on here >>> [link](http://lsbu-sensors.herokuapp.com/)
 
 # Exposed APIs
 ## Endpoint for realtime-date
