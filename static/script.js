@@ -209,6 +209,46 @@ dataPie = {
         'Loss',
     ]
 };
+
+dataPie1 = {
+    datasets: [{
+        data: [80, 20],
+        backgroundColor: [
+            'rgba(0, 255, 0, 0.8)',
+            'rgba(255, 0, 0, 0.8)',
+        ],
+        borderColor: [
+            'rgba(255, 255, 255, 1)',
+            'rgba(255, 255, 255, 1)',
+        ],
+    }],
+
+    // These labels appear in the legend and in the tooltips when hovering different arcs
+    labels: [
+        'Accuracy',
+        'Loss',
+    ]
+};
+
+dataPie2 = {
+    datasets: [{
+        data: [95, 5],
+        backgroundColor: [
+            'rgba(0, 255, 0, 0.8)',
+            'rgba(255, 0, 0, 0.8)',
+        ],
+        borderColor: [
+            'rgba(255, 255, 255, 1)',
+            'rgba(255, 255, 255, 1)',
+        ],
+    }],
+
+    // These labels appear in the legend and in the tooltips when hovering different arcs
+    labels: [
+        'Accuracy',
+        'Loss',
+    ]
+};
 var pie1 = document.getElementById('Pie-hum').getContext('2d');
 var PieHum = new Chart(pie1, {
     type: 'doughnut',
@@ -231,7 +271,7 @@ var PieHum = new Chart(pie1, {
 var pie2 = document.getElementById('Pie-temp').getContext('2d');
 var PieTemp = new Chart(pie2, {
     type: 'doughnut',
-    data: dataPie,
+    data: dataPie1,
     options: {
         legend: {
             display: false
@@ -249,7 +289,7 @@ var PieTemp = new Chart(pie2, {
 var pie3 = document.getElementById('Pie-heat').getContext('2d');
 var PieHeat = new Chart(pie3, {
     type: 'doughnut',
-    data: dataPie,
+    data: dataPie2,
     options: {
         legend: {
             display: false
@@ -382,9 +422,11 @@ async function myData(){
 
     let pie_list = [PieTemp, PieHum, PieHeat];
     let p_data = data['pred_stat']['lstm'];
-    let pie_data = [[p_data['temp']['accuracy'], p_data['temp']['loss']],
+    let pie_data = [
+                    [p_data['temp']['accuracy'], p_data['temp']['loss']],
                     [p_data['hum']['accuracy'], p_data['hum']['loss']],
-                    [p_data['heat']['accuracy'], p_data['heat']['loss']]];
+                    [p_data['heat']['accuracy'], p_data['heat']['loss']]
+                    ];
     for(let i=0; i<3;i++){
         next_x(chart_list[i], myTime);
         next_y(chart_list[i], data_list[i]);
